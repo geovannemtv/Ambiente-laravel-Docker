@@ -1,0 +1,27 @@
+version: "3"
+services: 
+  app-laravel:
+    build: .
+    container_name: app-laravel
+    environment: 
+      DB_DATABASE: laravel
+      DB_USERNAME: root
+      DB_PASSWORD: laravel
+      DB_HOST: mysql-app
+    volumes: 
+      - /home/geovanne/Desktop/admin-dashboard:/var/www/html
+    ports:
+    - "8000:80"
+    restart: unless-stopped
+  mysql-app:
+    image: mariadb
+    container_name: mysql-app
+    ports:
+      - "3306:3306"
+    environment: 
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: laravel
+    restart: unless-stopped
+
+
+
