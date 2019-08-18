@@ -9,7 +9,7 @@ services:
       DB_PASSWORD: laravel
       DB_HOST: mysql-app
     volumes: 
-      - /home/geovanne/Desktop/admin-dashboard:/var/www/html
+      - :/var/www/html
     ports:
     - "8000:80"
     restart: unless-stopped

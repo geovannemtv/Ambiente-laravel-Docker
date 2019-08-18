@@ -1,6 +1,6 @@
 FROM php:7.2-apache
 
-LABEL maintainer="geovanne queiroz <infraadmins@supera.com.br>"
+LABEL maintainer="geovanne queiroz"
 
 # install pre-requisites
 RUN apt-get update
