@@ -4,7 +4,8 @@
 set -e
 
 cd /var/www/html/ \
-    && composer install
+    && composer install \
+    && php artisan key:generate
 
 
 # first arg is `-f` or `--some-option`
@@ -15,3 +16,4 @@ cd /var/www/html/ \
 #exec "$@"
 
 exec apache2ctl -DFOREGROUND
+

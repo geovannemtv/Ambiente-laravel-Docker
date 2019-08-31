@@ -1,7 +1,7 @@
 FROM php:7.2-apache
 
 LABEL maintainer="geovanne queiroz"
-
+WORKDIR /var/www/html
 # install pre-requisites
 RUN apt-get update
 
@@ -18,7 +18,9 @@ RUN apt-get install -y \
     libmcrypt-dev \
     libreadline-dev \
     libfreetype6-dev \
-    g++
+    g++ \
+    rsync \
+    grsync
 #install extentions php
 RUN docker-php-ext-install \
     bz2 \
@@ -36,6 +38,10 @@ RUN curl -s https://getcomposer.org/installer | php && \
         mv composer.phar /usr/bin/composer
 
 # import project
+RUN git clone https://github.com/laravel/laravel.git 
+
+RUN  rsync -a ./laravel/ /var/www/html && \
+        mv .env.example .env
 #COPY ./ /var/www/html/
 RUN chown -R www-data:www-data /var/www/html \
         && chmod -R 755 /var/www/html
